@@ -1,9 +1,20 @@
+import { createBrowserRouter, RouterProvider } from "react-router";
+import Login from "./components/Login";
+import Browse from "./components/Browse";
+
 const App = () => {
-  return (
-    <div className="app">
-      <h1 className="text-red-500 underline border">Hello World !</h1>
-    </div>
-  );
+  const appRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/browse",
+      element: <Browse />,
+    },
+  ]);
+
+  return <RouterProvider router={appRouter} />;
 };
 
 export default App;
