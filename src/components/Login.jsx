@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { validateForm } from "../utils/validateForm";
 
 const Login = () => {
   const [isNew, setNew] = useState(false);
+  const [invalidMsg, setInvalidMsg] = useState("");
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleSubmit = () => {
+    const msg = validateForm(email.current.value, password.current.value);
+    setInvalidMsg(msg);
+  };
 
   return (
     <div>
       <img
-        className="brightness-50"
+        className="absolute brightness-50"
         src="https://assets.nflxext.com/ffe/siteui/vlv3/f268d374-734d-474f-ad13-af5ba87ef9fc/web/IN-en-20250210-TRIFECTA-perspective_92338d5d-6ccd-4b1a-8536-eb2b0240a55e_small.jpg"
         alt="bg-img"
       ></img>
@@ -17,7 +26,10 @@ const Login = () => {
         <h1 className="text-white text-3xl font-bold">
           {isNew ? "Sign Up" : "Sign In"}
         </h1>
-        <form className="justify-center mt-6 p-5 flex flex-col gap-4">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="justify-center mt-6 p-5 flex flex-col gap-4"
+        >
           {isNew && (
             <input
               className="w-full bg-[rgba(123,123,177,0.4)] p-3 rounded-[5px] text-white"
@@ -27,18 +39,22 @@ const Login = () => {
             />
           )}
           <input
+            ref={email}
             className="w-full bg-[rgba(123,123,177,0.4)] p-3 rounded-[5px] text-white"
             type="email"
             placeholder="Email"
-            required={true}
           />
           <input
+            ref={password}
             className="w-full bg-[rgba(123,123,177,0.4)]  p-3 rounded-[5px] text-white"
             type="password"
             placeholder="Password"
-            required={true}
           />
-          <button className="bg-red-600 text-white font-medium w-full text-center mt-6 py-3 rounded-[5px] hover:bg-red-700 cursor-pointer">
+          <p className="text-red-600 text-[13px]">{invalidMsg}</p>
+          <button
+            onClick={handleSubmit}
+            className="bg-red-600 text-white font-medium w-full text-center mt-6 py-3 rounded-[5px] hover:bg-red-700 cursor-pointer"
+          >
             {isNew ? "Sign Up" : "Sign In"}
           </button>
           <p className="text-gray-400 mt-4">
