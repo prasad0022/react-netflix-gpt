@@ -1,5 +1,10 @@
 import { useState, useRef } from "react";
 import { validateForm } from "../utils/validateForm";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isNew, setNew] = useState(false);
@@ -8,8 +13,49 @@ const Login = () => {
   const password = useRef(null);
 
   const handleSubmit = () => {
+    // Validate the format of email & password provided by user.
+
     const msg = validateForm(email.current.value, password.current.value);
     setInvalidMsg(msg);
+    if (msg) return;
+
+    // Proceed for SignIn/SignUp if format is valid.
+
+    if (isNew) {
+      // Sign Up Logic:
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setInvalidMsg(errorCode + ", " + errorMessage);
+        });
+    } else {
+      // Sign In Logic:
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setInvalidMsg(errorCode + ", " + errorMessage);
+        });
+    }
   };
 
   return (

@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "fir-demo-project"
-  }
+    "default": "fir-demo-project",
+    "staging": "netflixgpt-a4f84"
+  },
+  "targets": {},
+  "etags": {}
 }
