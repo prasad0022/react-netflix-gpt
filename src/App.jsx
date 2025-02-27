@@ -21,7 +21,7 @@ const App = () => {
   ]);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in
         const { uid, email, displayName } = user;
@@ -31,7 +31,9 @@ const App = () => {
         dispatch(removeUser());
       }
     });
-  }, []);
+
+    return () => unsubscribe();
+  }, [dispatch]);
 
   return <RouterProvider router={appRouter} />;
 };
