@@ -5,56 +5,42 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router";
 
 const Login = () => {
   const [isNew, setNew] = useState(false);
   const [invalidMsg, setInvalidMsg] = useState("");
   const email = useRef(null);
   const password = useRef(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Validate the format of email & password provided by user.
-
     const msg = validateForm(email.current.value, password.current.value);
     setInvalidMsg(msg);
     if (msg) return;
 
-    // Proceed for SignIn/SignUp if format is valid.
+    try {
+      if (isNew) {
+        // Sign Up Logic:
+        await createUserWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        );
+      } else {
+        // Sign In Logic:
+        await signInWithEmailAndPassword(
+          auth,
+          email.current.value,
+          password.current.value
+        );
+      }
 
-    if (isNew) {
-      // Sign Up Logic:
-      createUserWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
-        .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          console.log(user);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setInvalidMsg(errorCode + ", " + errorMessage);
-        });
-    } else {
-      // Sign In Logic:
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setInvalidMsg(errorCode + ", " + errorMessage);
-        });
+      // User authentication successful
+      navigate("/browse");
+    } catch (error) {
+      setInvalidMsg(`${error.code}, ${error.message}`);
     }
   };
 
