@@ -3,30 +3,53 @@ import { validateForm } from "../utils/validateForm";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/store/userSlice";
 
 const Login = () => {
   const [isNew, setNew] = useState(false);
   const [invalidMsg, setInvalidMsg] = useState("");
+  const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async () => {
     // Validate the format of email & password provided by user.
     const msg = validateForm(email.current.value, password.current.value);
-    setInvalidMsg(msg);
-    if (msg) return;
+    if (msg) {
+      setInvalidMsg(msg);
+      return;
+    }
 
     try {
       if (isNew) {
         // Sign Up Logic:
-        await createUserWithEmailAndPassword(
+        const userCredential = await createUserWithEmailAndPassword(
           auth,
           email.current.value,
           password.current.value
+        );
+
+        if (name.current?.value) {
+          await updateProfile(userCredential.user, {
+            displayName: name.current.value,
+          });
+        }
+
+        // Get updated user info
+        const updatedUser = userCredential.user;
+        dispatch(
+          addUser({
+            uid: updatedUser.uid,
+            email: updatedUser.email,
+            displayName: updatedUser.displayName,
+          })
         );
       } else {
         // Sign In Logic:
@@ -64,6 +87,7 @@ const Login = () => {
         >
           {isNew && (
             <input
+              ref={name}
               className="w-full bg-[rgba(123,123,177,0.4)] p-3 rounded-[5px] text-white"
               type="text"
               placeholder="Name"

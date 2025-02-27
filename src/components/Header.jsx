@@ -25,7 +25,7 @@ const Header = () => {
         NetflixGPT
       </h1>
       <div className="flex items-center gap-8 text-white cursor-pointer p-5">
-        <p className="text-xl">👤 {userData && userData.email}</p>
+        <p className="text-xl">👤 {userData?.displayName}</p>
         <button
           onClick={handleSignOut}
           className="bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition duration-300"
