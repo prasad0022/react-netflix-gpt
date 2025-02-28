@@ -70,14 +70,14 @@ const Login = () => {
   return (
     <div>
       <img
-        className="absolute brightness-50"
+        className="absolute brightness-60 h-screen w-screen"
         src="https://assets.nflxext.com/ffe/siteui/vlv3/f268d374-734d-474f-ad13-af5ba87ef9fc/web/IN-en-20250210-TRIFECTA-perspective_92338d5d-6ccd-4b1a-8536-eb2b0240a55e_small.jpg"
         alt="bg-img"
       ></img>
       <h1 className="absolute p-8 z-10 text-red-600 font-medium text-4xl bg-gradient-to-b from-black w-screen">
         NetflixGPT
       </h1>
-      <div className="absolute top-30 left-120 z-10 w-120 bg-[rgba(6,2,2,0.7)] p-12 rounded-[10px]">
+      <div className="absolute top-30 left-120 z-10 w-120 bg-[rgba(6,2,2,0.65)] p-12 rounded-[10px]">
         <h1 className="text-white text-3xl font-bold">
           {isNew ? "Sign Up" : "Sign In"}
         </h1>
