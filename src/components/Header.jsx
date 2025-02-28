@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/store/userSlice";
+import { removeMovies } from "../utils/store/moviesSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Header = () => {
       } else {
         // User is signed out
         dispatch(removeUser());
+        dispatch(removeMovies());
         navigate("/");
       }
     });
