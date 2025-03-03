@@ -13,7 +13,7 @@ dist-ssr
 *.local
 .firebase
 src/utils/firebase.js
-src/utils/constants.js
+src/utils/tmdbConfig.js
 
 # Editor directories and files
 .vscode/*

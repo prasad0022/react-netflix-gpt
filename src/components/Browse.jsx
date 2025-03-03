@@ -1,29 +1,16 @@
-import { useEffect } from "react";
-import { NOW_PLAYING_OPTIONS, NOW_PLAYING_URL } from "../utils/constants";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import Header from "./Header";
-import { useDispatch } from "react-redux";
-import { addMovies } from "../utils/store/moviesSlice";
+import MainContainer from "./Browse Components/MainContainer";
+import SecondaryContainer from "./Browse Components/SecondaryContainer";
 
 const Browse = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const getNowPlayingMovies = async () => {
-      try {
-        const data = await fetch(NOW_PLAYING_URL, NOW_PLAYING_OPTIONS);
-        const jsonData = await data.json();
-        dispatch(addMovies(jsonData.results));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getNowPlayingMovies();
-  }, [dispatch]);
+  useNowPlayingMovies();
 
   return (
-    <div className="bg-gray-950 h-screen">
+    <div className="h-screen">
       <Header />
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 };
