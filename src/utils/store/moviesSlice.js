@@ -15,9 +15,12 @@ const moviesSlice = createSlice({
         },
         addTrailerKey: (state, action) => {
             state.trailerKey = action.payload;
-        }
+        },
+        removeTrailerKey: (state) => {
+            state.trailerKey = null;
+        },
     }
 });
 
-export const { addMovies, removeMovies, addTrailerKey } = moviesSlice.actions;
+export const { addMovies, removeMovies, addTrailerKey, removeTrailerKey } = moviesSlice.actions;
 export default moviesSlice.reducer;
