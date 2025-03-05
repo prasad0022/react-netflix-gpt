@@ -10,7 +10,7 @@ const VideoBackground = ({ id }) => {
     useSelector((store) => store.movies.trailerKey) || mockTrailerKey;
 
   return (
-    <div className="absolute top-0 -z-10 brightness-50">
+    <div className="absolute top-0 -z-10">
       {trailerKey ? (
         <iframe
           className="w-[98.9vw] aspect-video"
