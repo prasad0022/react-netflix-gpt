@@ -1,14 +1,15 @@
 import VideoBackground from "./VideoBackground";
 import VideoHeader from "./VideoHeader";
 import { useSelector } from "react-redux";
+import { mockMainMovie } from "../../utils/mock_data/mockData";
 
 const MainContainer = () => {
   const moviesList = useSelector((store) => store.movies?.nowPlaying);
-  if (!moviesList) return;
 
-  const mainMovie = moviesList[0];
+  // Ensure moviesList has at least one movie before accessing index 0
+  const mainMovie = moviesList?.length > 0 ? moviesList[0] : mockMainMovie;
 
-  const { id, original_title, overview } = mainMovie;
+  const { id, original_title, overview } = mainMovie || {}; // Avoids destructuring errors
 
   return (
     <div>

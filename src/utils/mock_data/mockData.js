@@ -1,5 +1,5 @@
 
-export const mainMovie = {
+export const mockMainMovie = {
     "adult": false,
     "backdrop_path": "/9nhjGaFLKtddDPtPaX5EmKqsWdH.jpg",
     "genre_ids": [
@@ -20,4 +20,4 @@ export const mainMovie = {
     "vote_count": 1575
 };
 
-export const trailerKey = "rUSdnuOLebE";
+export const mockTrailerKey = "rUSdnuOLebE";
