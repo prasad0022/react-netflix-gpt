@@ -1,4 +1,9 @@
-import { mockNowPlayingMovies } from "../../utils/mock_data/mockData";
+import {
+  mockNowPlayingMovies,
+  mockPopularMovies,
+  mockTopRatedMovies,
+  mockUpcomingMovies,
+} from "../../utils/mock_data/mockData";
 import MovieList from "./MovieList";
 import { useSelector } from "react-redux";
 
@@ -10,9 +15,9 @@ const SecondaryContainer = () => {
   return (
     <div className="text-white bg-black bg-gradient-to-b from-gray-900 rounded-t-3xl pt-1 mt-2">
       <MovieList title="Now Playing" movieList={nowPlayingMovies} />
-      <MovieList title="Popular" movieList={nowPlayingMovies} />
-      <MovieList title="Top Rated" movieList={nowPlayingMovies} />
-      <MovieList title="Upcoming" movieList={nowPlayingMovies} />
+      <MovieList title="Popular" movieList={mockPopularMovies} />
+      <MovieList title="Top Rated" movieList={mockTopRatedMovies} />
+      <MovieList title="Upcoming" movieList={mockUpcomingMovies} />
     </div>
   );
 };

@@ -19,7 +19,7 @@ const MovieList = ({ title, movieList }) => {
 
   const scroll = (direction) => {
     if (!scrollRef.current) return;
-    const scrollAmount = 300;
+    const scrollAmount = 800;
     scrollRef.current.scrollBy({
       left: direction * scrollAmount,
       behavior: "smooth",

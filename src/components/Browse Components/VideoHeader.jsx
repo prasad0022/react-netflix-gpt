@@ -1,7 +1,7 @@
 // eslint-disable-next-line react/prop-types
 const VideoHeader = ({ original_title, overview }) => {
   return (
-    <div className="w-180 p-20 mt-40 rounded-2xl text-white hover:bg-[rgba(6,2,2,0.7)]">
+    <div className="w-180 p-20 mt-40 text-white">
       <h1 className="text-5xl font-bold">{original_title}</h1>
       <p className="mt-6 text-lg">{overview}</p>
       <div className="mt-6 text-xl inline-block">
