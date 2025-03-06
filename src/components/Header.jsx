@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router";
+import { useNavigate, NavLink } from "react-router";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -48,6 +48,11 @@ const Header = () => {
       <h1 className="p-8 z-10 text-red-600 font-medium text-4xl">NetflixGPT</h1>
       {userData && (
         <div className="flex items-center gap-8 text-white p-5">
+          <NavLink to="/gpt-search">
+            <p className="text-xl font-medium text-green-500 transform transition duration-300 hover:scale-110 cursor-pointer">
+              🚀Search with GPT
+            </p>
+          </NavLink>
           <p className="text-xl">👤 {userData?.displayName}</p>
           <button
             onClick={handleSignOut}
