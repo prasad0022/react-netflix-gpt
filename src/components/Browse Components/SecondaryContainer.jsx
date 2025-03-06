@@ -8,7 +8,7 @@ const SecondaryContainer = () => {
     mockNowPlayingMovies;
 
   return (
-    <div className="text-white bg-black bg-gradient-to-b from-gray-900 rounded-t-3xl pt-1 mt-5">
+    <div className="text-white bg-black bg-gradient-to-b from-gray-900 rounded-t-3xl pt-1 mt-2">
       <MovieList title="Now Playing" movieList={nowPlayingMovies} />
       <MovieList title="Popular" movieList={nowPlayingMovies} />
       <MovieList title="Top Rated" movieList={nowPlayingMovies} />
