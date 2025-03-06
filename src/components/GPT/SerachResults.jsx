@@ -1,5 +1,5 @@
 const SerachResults = () => {
-  return <div>SerachResults</div>;
+  return <div></div>;
 };
 
 export default SerachResults;
