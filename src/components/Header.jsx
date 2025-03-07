@@ -7,6 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/store/userSlice";
 import { removeMovies, removeTrailerKey } from "../utils/store/moviesSlice";
+import { removeGptMovies } from "../utils/store/gptSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Header = () => {
         dispatch(removeUser());
         dispatch(removeMovies());
         dispatch(removeTrailerKey());
+        dispatch(removeGptMovies());
         navigate("/");
       }
     });
