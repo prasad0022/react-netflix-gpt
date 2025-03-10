@@ -46,16 +46,26 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-black flex justify-between">
-      <h1 className="p-8 z-10 text-red-600 font-medium text-4xl">NetflixGPT</h1>
+    <div className="bg-gradient-to-b from-black flex flex-col md:flex-row md:justify-between items-center p-4">
+      {/* Logo */}
+      <h1 className="text-red-600 z-10 font-medium text-2xl md:text-4xl p-2 md:p-8">
+        NetflixGPT
+      </h1>
+
+      {/* User Section */}
       {userData && (
-        <div className="flex items-center gap-8 text-white p-5">
+        <div className="flex flex-row md:flex-row items-center gap-4 md:gap-8 text-white">
+          {/* Search */}
           <NavLink to="/gpt-search">
-            <p className="text-xl font-medium text-green-500 transform transition duration-300 hover:scale-110 cursor-pointer">
+            <p className="text-lg md:text-xl font-medium text-green-500 transform transition duration-300 hover:scale-110 cursor-pointer">
               🚀Search with GPT
             </p>
           </NavLink>
-          <p className="text-xl">👤 {userData?.displayName}</p>
+
+          {/* User Info */}
+          <p className="text-lg md:text-xl">👤 {userData?.displayName}</p>
+
+          {/* Sign Out Button */}
           <button
             onClick={handleSignOut}
             className="bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition duration-300 cursor-pointer"
